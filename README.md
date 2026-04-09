@@ -79,6 +79,20 @@ Instally.trackPurchase(
 - iOS 14.0+
 - Swift 5.9+
 
+## Resources
+
+- [Instally Website](https://instally.io) — Track clicks, installs, and revenue from every link
+- [Dashboard](https://app.instally.io) — Real-time analytics for your app installs
+- [Documentation](https://docs.instally.io) — Full SDK docs and API reference
+- [Pricing](https://instally.io/pricing) — Free tier available, no credit card required
+- [Blog](https://instally.io/blog) — Guides on install tracking, IDFA, and more
+
+### Other SDKs
+
+- [Android SDK](https://github.com/Instally-io/instally-android-sdk)
+- [Flutter SDK](https://github.com/Instally-io/instally-flutter-sdk)
+- [React Native SDK](https://github.com/Instally-io/instally-react-native-sdk)
+
 ## License
 
 MIT
