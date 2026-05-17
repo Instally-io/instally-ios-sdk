@@ -5,11 +5,11 @@ final class InstallyTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        Instally._resetForTesting()
+        Instally.resetForTesting()
     }
 
     override func tearDown() {
-        Instally._resetForTesting()
+        Instally.resetForTesting()
         super.tearDown()
     }
 
@@ -47,7 +47,7 @@ final class InstallyTests: XCTestCase {
         UserDefaults.standard.set("attr_123", forKey: "instally_attribution_id")
         UserDefaults.standard.set(true, forKey: "instally_install_tracked")
 
-        Instally._resetForTesting()
+        Instally.resetForTesting()
 
         XCTAssertFalse(UserDefaults.standard.bool(forKey: "instally_matched"))
         XCTAssertNil(UserDefaults.standard.string(forKey: "instally_attribution_id"))

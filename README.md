@@ -1,8 +1,22 @@
 # Instally iOS SDK
 
-Track clicks, installs, and revenue from every link. Lightweight install tracking for iOS apps.
+Track clicks, installs, and revenue from every link you share. See which links actually drive installs and revenue for your iOS app. Privacy-preserving attribution — no IDFA, no ATT prompt.
 
-[instally.io](https://instally.io)
+![Platform](https://img.shields.io/badge/platform-iOS%2014%2B-black)
+![Swift](https://img.shields.io/badge/swift-5.9%2B-orange)
+![License](https://img.shields.io/badge/license-MIT-black)
+
+**[Website](https://instally.io)** | **[Documentation](https://docs.instally.io)** | **[Blog](https://instally.io/blog)** | **[Sign Up Free](https://app.instally.io/signup)**
+
+## Features
+
+- 3-line integration — configure, track, done
+- No IDFA, no ATT prompt, no special permissions
+- Per-link install and revenue tracking
+- Real-time dashboard
+- Webhook integrations with RevenueCat, Superwall, Adapty, Qonversion, and Stripe
+- SwiftUI and UIKit compatible
+- Zero third-party dependencies
 
 ## Installation
 
@@ -71,13 +85,57 @@ Instally.trackPurchase(
 | `Instally.trackInstall(completion:)` | Track install attribution |
 | `Instally.trackPurchase(productId:revenue:currency:transactionId:)` | Track a purchase |
 | `Instally.setUserId(_:)` | Link an external user ID |
+| `Instally.resetForTesting()` | Clear cached attribution state during development testing |
 | `Instally.isAttributed` | Whether this install was attributed to a link |
 | `Instally.attributionId` | The attribution ID (nil if not attributed) |
+
+## Testing Attribution
+
+Development builds are supported. For the cleanest test, click the tracking link
+once on the same physical device you open the app on, then launch the app within
+a few minutes.
+
+Avoid repeated clicks before opening the app. Multiple recent unmatched clicks
+from the same device or network can be treated as ambiguous and return
+`matched=false`.
+
+`trackInstall()` is cached per app install, including `matched=false` results.
+When retrying on the same dev build, uninstall/reinstall the app or clear the SDK
+cache in development:
+
+```swift
+#if DEBUG
+Instally.resetForTesting()
+#endif
+```
+
+## FAQ
+
+### Do I need to show an ATT prompt?
+
+No. The SDK does not request the IDFA, so iOS does not require the ATT prompt.
+
+### Does it work with RevenueCat or Stripe?
+
+Yes. Call `Instally.setUserId(...)` to link your subscription-platform user ID, then configure the Instally webhook in the dashboard. Purchases are automatically attributed to the link that drove the install. See the [RevenueCat integration guide](https://instally.io/blog/revenuecat-instally-integration).
+
+### What's the SDK size?
+
+Under 50 KB. Zero third-party dependencies.
+
+### Where can I see my data?
+
+Real-time dashboard at [app.instally.io](https://app.instally.io) — clicks, installs, revenue, per-link breakdown.
 
 ## Requirements
 
 - iOS 14.0+
 - Swift 5.9+
+
+## Learn More
+
+- [How to Track App Installs in iOS (Swift)](https://instally.io/blog/how-to-track-app-installs-ios) — full integration walkthrough
+- [Instally vs AppsFlyer vs Branch](https://instally.io/blog/instally-vs-appsflyer-vs-branch) — competitor comparison
 
 ## Resources
 

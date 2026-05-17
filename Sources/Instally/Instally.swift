@@ -1,7 +1,3 @@
-// Instally iOS SDK
-// Track clicks, installs, and revenue from every link.
-// https://instally.io
-
 import Foundation
 import UIKit
 
@@ -246,10 +242,8 @@ public final class Instally {
         sendUserId(userId, attributionId: attributionId)
     }
 
-    // MARK: - Testing
-
-    /// Reset all SDK state. For testing only.
-    public static func _resetForTesting() {
+    /// Clear cached install attribution state for development testing.
+    public static func resetForTesting() {
         appId = nil
         apiKey = nil
         apiBase = "https://us-central1-instally-5f6fd.cloudfunctions.net/api"
@@ -267,9 +261,14 @@ public final class Instally {
         }
     }
 
+    @available(*, deprecated, renamed: "resetForTesting")
+    public static func _resetForTesting() {
+        resetForTesting()
+    }
+
     // MARK: - Private
 
-    private static let sdkVersion = "1.0.0"
+    private static let sdkVersion = "1.0.1"
 
     private static func deviceModel() -> String {
         var systemInfo = utsname()
